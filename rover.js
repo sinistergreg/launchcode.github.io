@@ -24,10 +24,21 @@ class Rover {
              }
            });
          } else if(message.commands[i].commandType === 'MOVE') {
-           this.position = message.commands[i].value;
-           response.results.push({
-             completed: true
-           });
+           if (this.mode === 'LOW_POWER') { 
+            response.results.push({
+               completed: false
+           
+         //    this.position = message.commands[i].value;
+         //   response.results.push({
+         //     completed: true
+            })
+         } else {
+            this.position = message.commands[i].value;
+            response.results.push({
+               completed: true
+
+            })
+         }
          } else if(message.commands[i].commandType === 'MODE_CHANGE') {
          //   if(message.commands[i].value === 'NORMAL') {
              this.mode = message.commands[i].value;

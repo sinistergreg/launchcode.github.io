@@ -69,14 +69,13 @@ describe("Rover class", function() {
 //test 12
 
   it("responds with false completed value when attempting to move in LOW_POWER mode", function() {
-    let myCommands = [new Command('MODE_CHANGE', 'LOW_POWER')];
+    let myCommands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command("MOVE", 9999)];
     let myMessage = new Message('Change mode to low power', myCommands);
     let myRover = new Rover(98382);
 
     let response = myRover.receiveMessage(myMessage);
 
-    expect(response.results[0].completed).toBeFalse();
-    expect(myRover.mode).toEqual('NORMAL');
+    expect(response.results[1].completed).toBeFalse();
   });
 
 //test 13
