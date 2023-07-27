@@ -6,12 +6,12 @@ class Rover {
       this.generatorWatts = 110;
     }
  
-   recieveMessage(message) {
+   receiveMessage(message) {
      let response = {
        message: message.name,
        results: []
      }
-     if(message.commands) {
+   //   if(message.commands) {
        for(let i = 0; i < message.commands.length; i++) {
  
          if(message.commands[i].commandType === 'STATUS_CHECK') {
@@ -29,23 +29,23 @@ class Rover {
              completed: true
            });
          } else if(message.commands[i].commandType === 'MODE_CHANGE') {
-           if(message.commands[i].value === 'NORMAL') {
-             this.mode = message.commands[i].value
+         //   if(message.commands[i].value === 'NORMAL') {
+             this.mode = message.commands[i].value;
              response.results.push({
                completed: true
              });
-           } else {
-             response.results.push({
-               completed: false
-             });
+         //   } else {
+         //     response.results.push({
+         //       completed: false
+         //     });
            }
-         }
+         // }
          
-       }
-     }
+      //  }
+   //   }
  
-     return response;
    }
+   return response;
  }
-
+}
 module.exports = Rover;
